@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <title>SignBridge | Gesture Recognition</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <header>
+    <a class="brand" href="/">Sign<span>Bridge</span></a>
+    <span class="pill">AI ACCESSIBILITY PROTOTYPE</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">COMMUNICATION, MADE CLEARER</p>
+      <h1>Turn hand gestures<br><span>into helpful captions.</span></h1>
+      <p class="muted">A real-time gesture-recognition prototype using your browser camera and a Python/MediaPipe model.</p>
+      <div id="status" class="status" role="status" aria-live="polite">Checking model…</div>
+    </section>
+
+    <section class="grid">
+      <article class="panel">
+        <p class="eyebrow">LIVE INPUT</p>
+        <h2>Camera preview</h2>
+        <video id="camera" class="camera" autoplay muted playsinline aria-label="Browser webcam preview"></video>
+        <canvas id="capture" width="320" height="240" hidden></canvas>
+        <div class="controls">
+          <button id="startCamera" class="button primary" type="button">Start camera</button>
+          <button id="stopCamera" class="button secondary" type="button" disabled>Stop camera</button>
+        </div>
+        <p class="muted">Allow camera access, keep your hand fully visible and use good lighting. Recognition updates about once per second.</p>
+        <p id="cameraMessage" class="small-message" role="status" aria-live="polite">Camera is off until you start it.</p>
+      </article>
+
+      <article class="panel">
+        <p class="eyebrow">MODEL OUTPUT</p>
+        <h2>Detected gesture</h2>
+        <div id="gestureIcon" class="hand" aria-hidden="true">✋</div>
+        <p id="gestureLabel" class="detected-label" aria-live="polite">Waiting for camera…</p>
+        <p class="muted">Prediction confidence: <strong id="confidence">—</strong></p>
+        <div class="caption-box">
+          <span class="caption-heading">CAPTION</span>
+          <p id="caption">Start the camera and show a supported hand gesture.</p>
+        </div>
+        <div class="note"><b>Prototype limitation</b><p>This recognizes a limited set of static hand gestures. It does not translate full sign language or understand facial expressions, body posture, movement sequences, or context.</p></div>
+      </article>
+    </section>
+
+    <section class="grid lower">
+      <article class="panel">
+        <h2>How to use</h2>
+        <p>1. Select <b>Start camera</b> and allow permission.<br>2. Show a supported gesture clearly.<br>3. Read the predicted label, confidence score and caption.</p>
+      </article>
+      <article class="panel">
+        <h2>Privacy and processing</h2>
+        <p>For this hosted version, small camera snapshots are sent to the Python endpoint for recognition. The app code does not save them to a database, but the hosting provider processes requests. Stop the camera when finished and avoid sensitive footage.</p>
+      </article>
+    </section>
+    <footer>SignBridge · Student project prototype · Predictions may be wrong · Not a substitute for a qualified interpreter.</footer>
+  </main>
+  <script src="/static/js/app.js" defer></script>
+</body>
+</html>
